@@ -1,0 +1,71 @@
+List of people who are at least 30 years old:
+David is 42
+Fran is 50
+Charlie is 65
+Ed is 55
+
+Number of Like combinations: 8
+
+List of likes:
+Bob liked Alice's posts 7 times
+Bob liked David's posts 2 times
+Charlie liked Bob's posts 4 times
+Charlie liked Fran's posts 3 times
+David liked Alice's posts 1 times
+Ed liked Bob's posts 2 times
+Ed liked Charlie's posts 8 times
+Ed liked Fran's posts 3 times
+
+List of Likes where number of likes is more than 5:
+Bob likes Alice's posts 7 times
+Ed likes Charlie's posts 8 times
+
+List of the number of users from whom a user received Like
+User 1 received Likes from 2 user(s)
+User 6 received Likes from 2 user(s)
+User 2 received Likes from 2 user(s)
+User 4 received Likes from 1 user(s)
+User 3 received Likes from 1 user(s)
+
+List of the number of users a user provided Like to (i.e. follows)
+User 5 Liked (or follows) 3 user(s)
+User 3 Liked (or follows) 2 user(s)
+User 2 Liked (or follows) 2 user(s)
+User 4 Liked (or follows) 1 user(s)
+
+Number of people whose posts user 5 likes and that also like each other's posts:
+2
+
+List of the oldest follower of each user:
+User 1's oldest follower is 42 years of age
+User 2's oldest follower is 65 years of age
+User 3's oldest follower is 55 years of age
+User 4's oldest follower is 27 years of age
+User 6's oldest follower is 65 years of age
+
+List of the youngest follower of each user:
+User 1's youngest follower is 27 years of age
+User 2's youngest follower is 55 years of age
+User 3's youngest follower is 55 years of age
+User 4's youngest follower is 27 years of age
+User 6's youngest follower is 55 years of age
+
+ List of the oldest person that each person is following:
+User 2's oldest followee is 42 years of age
+User 3's oldest followee is 50 years of age
+User 4's oldest followee is 28 years of age
+User 5's oldest followee is 65 years of age
+
+ List of the youngest person that each person is following:
+User 2's youngest followee is 28 years of age
+User 3's youngest followee is 27 years of age
+User 4's youngest followee is 28 years of age
+User 5's youngest followee is 27 years of age
+
+List of each user's PageRank in descending order:
+User 1's pagerank is 1.5453030618621122
+User 4's pagerank is 1.035409289731306
+User 6's pagerank is 1.0247865028119143
+User 2's pagerank is 1.0247865028119143
+User 3's pagerank is 0.7698396167465112
+User 5's pagerank is 0.5998750260362425

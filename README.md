@@ -6,8 +6,8 @@ Every edge will contain source, destination and an integer indicating the number
 Used Spark RDD and GraphX to find out the following informations:
 
 1. Create a listing of those people who are at least 30 years old
-2. Find and display the number of triplets in the graph
-3. Create a listing of who likes who's posts
+2. Find and display the number of like combinations in the graph
+3. Create a listing of the likes (who likes who's posts)
 4. Create a listing of those triplets where the number of likes is more than 5
 5. Find and display the indegrees of each vertex
 6. Find the user that follows the most number of people
