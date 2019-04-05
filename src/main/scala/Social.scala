@@ -18,6 +18,7 @@ object Social {
     // Display only ERROR logs in terminal
     sc.setLogLevel("ERROR")
 
+    // Create nodes/vertices (id, (properties))
     val users = Array(
       (1L, ("Alice", 28)),
       (2L, ("Bob", 27)),
@@ -27,6 +28,7 @@ object Social {
       (6L, ("Fran", 50))
     )
 
+    // Create edges (start, end, properties)
     val likes = Array(
       Edge(2L, 1L, 7),
       Edge(2L, 4L, 2),
@@ -43,8 +45,9 @@ object Social {
 
     val graph: Graph[(String, Int), Int] = Graph(usersRDD, likesRDD)
 
+    val userInfo = graph.vertices
     println("\nList of people who are at least 30 years old:")
-    graph.vertices.filter { case (id, (name, age)) => age > 30 }.collect.foreach {
+    userInfo.filter { case (id, (name, age)) => age > 30 }.collect.foreach {
       case (id, (name, age)) => println(s"$name is $age")
     }
 
@@ -71,40 +74,47 @@ object Social {
     val outDegrees: VertexRDD[Int] = graph.outDegrees
     outDegrees.sortBy(_._2,false).foreach(x => println(s"User ${x._1} Liked (or follows) ${x._2} user(s)"))
 
+    println("\nNumber of triangles around each user: ")
+    graph.triangleCount().vertices.foreach(x => println(s"User ${x._1} forms ${x._2} triangle(s)"))
+
     println("\nNumber of people whose posts user 5 likes and that also like each other's posts: ")
     graph.triangleCount().vertices.filter(x=>x._1==5).foreach(x => println(x._2))
 
     println("\nList of the oldest follower of each user:")
     val oldestFollower = graph.aggregateMessages[Int](
-      edgeContext => edgeContext.sendToDst(edgeContext.srcAttr._2),//sendMsg
-      (x,y) => math.max(x,y) //mergeMsg
+      edgeContext => edgeContext.
+        sendToDst(edgeContext.srcAttr._2),//sendMsg (age), map phase
+        (x,y) => math.max(x,y) //mergeMsg (find max), reduce phase
     )
     oldestFollower.sortBy(_._1,true).foreach(x => println(s"User ${x._1}'s oldest follower is ${x._2} years of age"))
 
     println("\nList of the youngest follower of each user:")
     val youngestFollower = graph.aggregateMessages[Int](
-      edgeContext => edgeContext.sendToDst(edgeContext.srcAttr._2),//sendMsg
-      (x,y) => math.min(x,y) //mergeMsg
+      edgeContext => edgeContext.
+        sendToDst(edgeContext.srcAttr._2),//sendMsg (age), map phase
+        (x,y) => math.min(x,y) //mergeMsg (find min), reduce phase
     )
     youngestFollower.sortBy(_._1,true).foreach(x => println(s"User ${x._1}'s youngest follower is ${x._2} years of age"))
 
     println("\n List of the oldest person that each person is following:")
     val oldestFollowee = graph.aggregateMessages[Int](
-      edgeContext => edgeContext.sendToSrc(edgeContext.dstAttr._2),//sendMsg
-      (x,y) => math.max(x,y) //mergeMsg
+      edgeContext => edgeContext.
+        sendToSrc(edgeContext.dstAttr._2),//sendMsg (age), map phase
+        (x,y) => math.max(x,y) //mergeMsg (find max), reduce phase
     )
     oldestFollowee.sortBy(_._1,true).foreach(x => println(s"User ${x._1}'s oldest followee is ${x._2} years of age"))
 
     println("\n List of the youngest person that each person is following:")
     val youngestFollowee = graph.aggregateMessages[Int](
-      edgeContext => edgeContext.sendToSrc(edgeContext.dstAttr._2),//sendMsg
-      (x,y) => math.min(x,y) //mergeMsg
+      edgeContext => edgeContext.
+        sendToSrc(edgeContext.dstAttr._2),//sendMsg (age), map phase
+        (x,y) => math.min(x,y) //mergeMsg (find min), reduce phase
     )
     youngestFollowee.sortBy(_._1,true).foreach(x => println(s"User ${x._1}'s youngest followee is ${x._2} years of age"))
 
     println("\nList of each user's PageRank in descending order:")
     val ranks = graph.pageRank(0.1).vertices
-    val topVertices = ranks.sortBy(_._2,false).foreach(x => println(s"User ${x._1}'s pagerank is ${x._2}"))
+    ranks.sortBy(_._2,false).foreach(x => println(s"User ${x._1}'s pagerank is ${x._2}"))
 
     sc.stop()
     println("\nDisconnected from Spark")

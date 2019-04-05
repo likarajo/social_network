@@ -33,6 +33,14 @@ User 3 Liked (or follows) 2 user(s)
 User 2 Liked (or follows) 2 user(s)
 User 4 Liked (or follows) 1 user(s)
 
+Number of triangles around each user:
+User 4 forms 1 triangle(s)
+User 1 forms 1 triangle(s)
+User 6 forms 1 triangle(s)
+User 3 forms 2 triangle(s)
+User 5 forms 2 triangle(s)
+User 2 forms 2 triangle(s)
+
 Number of people whose posts user 5 likes and that also like each other's posts:
 2
 
