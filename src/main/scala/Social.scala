@@ -116,6 +116,9 @@ object Social {
     val ranks = graph.pageRank(0.1).vertices
     ranks.sortBy(_._2,false).foreach(x => println(s"User ${x._1}'s pagerank is ${x._2}"))
 
+    //graph.connectedComponents.vertices.collect().foreach(println)
+    //graph.stronglyConnectedComponents(5).vertices.collect().foreach(println)
+
     sc.stop()
     println("\nDisconnected from Spark")
 
