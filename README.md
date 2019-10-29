@@ -3,6 +3,10 @@
 Created a social network of users liking each other's posts. For every person, we keep track of their name and age.
 Every edge will contain source, destination and an integer indicating the number of times a person liked other's posts.
 
+<div align="center">
+  <img src="social_network.png" width=600 />
+</div>  
+
 Used Spark RDD and GraphX to find out the following informations:
 
 1. Create a listing of those people who are at least 30 years old
